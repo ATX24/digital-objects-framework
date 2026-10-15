@@ -16,6 +16,6 @@ Live Claude authentication stays in the trusted broker. Claude runs with no nati
 
 ## Scan policy
 
-Gitleaks scans committed source with redacted output. Bandit runs at the medium/high gate (`-ll`); its low-severity `B404`, `B603` and `B607` subprocess notices remain visible in a full scan. These sites intentionally invoke BAML, Git and the native Claude CLI using argument arrays and no shell. Executable discovery and host PATH are trusted. The IPC, sandbox, output-limit and redirect tests exercise the relevant boundaries rather than suppressing those findings.
+Gitleaks scans committed source with redacted output. Bandit 1.9.4 scans all runtime Python; the gate fails on skipped files, scan errors or medium/high findings. Its low-severity `B404`, `B603` and `B607` subprocess notices remain visible. These sites intentionally invoke BAML, Git and the native Claude CLI using argument arrays and no shell. Executable discovery and host PATH are trusted. The IPC, sandbox, output-limit and redirect tests exercise the relevant boundaries rather than suppressing those findings.
 
 These scans and regression tests are not an independent penetration test. Report vulnerabilities privately to repository maintainers; do not include credentials, model caches or private traces in public issues.
